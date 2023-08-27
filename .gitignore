@@ -1,3 +1,4 @@
 node_modules
 src/upload
 secret
+.vercel
