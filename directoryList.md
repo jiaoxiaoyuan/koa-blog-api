@@ -1,4 +1,3 @@
-```
 -- bin
    |-- www 项目的入口 npm start 
 -- public  存放项目静态文件
@@ -15,5 +14,3 @@
 -- app.js  配置文件
 -- package-lock.json 控制包版本
 -- package.json 包管理
-
-```
