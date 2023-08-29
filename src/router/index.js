@@ -21,8 +21,12 @@ fs.readdirSync(__dirname).forEach(file => {
 
 // 随便写的一个欢迎
 router.get('/', (ctx, next) => {
-    ctx.body = '欢迎 这是后台server首页'
+    ctx.body = '欢迎这是后台server首页'
 })
+
+// router.get('/apis', (ctx, next) => {
+//     ctx.body = { success: true, msg: `删除数据成功` }
+// })
 
 router.get('/swagger.json', async function (ctx) {
     ctx.set('Content-Type', 'application/json')
