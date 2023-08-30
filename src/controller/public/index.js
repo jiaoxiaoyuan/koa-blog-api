@@ -41,10 +41,10 @@ module.exports = {
         ctx.body = result('获取客户端基本信息成功', data)
     },
     /**
-     *  @description 获取码云代码提交统计
+     *  @description 获取天气
      *  @type 公共接口
      */
-    gitee: async (ctx, next) => {
+    getWeather: async (ctx, next) => {
         try {
             let data = {
                 key: WeatherKey,
@@ -73,5 +73,42 @@ module.exports = {
             console.error(err)
             return ctx.app.emit('error', throwError(errorCode, '新增文章失败'), ctx)
         }
+    },
+    /**
+     * @description 获取IP信息查询
+     */
+    getIpInfo: async (ctx, next) => {
+        try {
+            let data = {
+                app_id: appId,
+                app_secret: appSecret
+            }
+            let url = `${publicUrl}/api/ip/self?${Qs.stringify(data)}`
+            const options = {
+                url: url, // 请求的URL
+                method: 'GET', // 请求方法
+                headers: {
+                    'User-Agent': 'Koa Request' // 设置请求头
+                }
+            }
+            const response = await new Promise((resolve, reject) => {
+                request(options, (error, response, body) => {
+                    if (error) {
+                        reject(error)
+                    } else {
+                        let resq = JSON.parse(body)
+                        resolve(resq.data)
+                    }
+                })
+            })
+            ctx.body = result('获取成功', response)
+        } catch (err) {
+            console.error(err)
+            return ctx.app.emit('error', throwError(errorCode, '新增文章失败'), ctx)
+        }
     }
+    /**
+     * @description 获取指定日期、按年、按月的节假日和万年历信息
+     *
+     */
 }

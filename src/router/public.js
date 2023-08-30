@@ -5,11 +5,15 @@
 const Router = require('koa-router')
 const router = new Router({ prefix: '/apis' })
 
-const { getOs, gitee } = require('../controller/public/index')
+const { getOs, getWeather, getIpInfo } = require('../controller/public/index')
 
 // 获取客户端基本信息
 router.get('/getOs', getOs)
-// 获取码云代码提交统计
-router.get('/gitee', gitee)
+
+// 获取天气
+router.get('/getWeather', getWeather)
+
+// 获取IP信息
+router.get('/getIpInfo', getIpInfo)
 
 module.exports = router
