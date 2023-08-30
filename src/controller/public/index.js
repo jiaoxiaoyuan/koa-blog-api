@@ -1,5 +1,6 @@
 const os = require('os')
 const Qs = require('qs')
+const dayjs = require('dayjs')
 const request = require('request')
 const { WeatherUrl, WeatherKey, publicUrl, appId, appSecret } = require('../../utils/common')
 const { result, ERRORCODE, throwError } = require('../../result/index')
@@ -106,9 +107,42 @@ module.exports = {
             console.error(err)
             return ctx.app.emit('error', throwError(errorCode, '新增文章失败'), ctx)
         }
-    }
+    },
     /**
      * @description 获取指定日期、按年、按月的节假日和万年历信息
      *
      */
+
+    getCalendar: async (ctx, next) => {
+        try {
+            let data = {
+                ignoreHoliday: false,
+                app_id: appId,
+                app_secret: appSecret
+            }
+            let Time = dayjs().format('YYYYMMDD')
+            let url = `${publicUrl}/api/holiday/single/${Time}?${Qs.stringify(data)}`
+            const options = {
+                url: url, // 请求的URL
+                method: 'GET', // 请求方法
+                headers: {
+                    'User-Agent': 'Koa Request' // 设置请求头
+                }
+            }
+            const response = await new Promise((resolve, reject) => {
+                request(options, (error, response, body) => {
+                    if (error) {
+                        reject(error)
+                    } else {
+                        let resq = JSON.parse(body)
+                        resolve(resq.data)
+                    }
+                })
+            })
+            ctx.body = result('获取成功', response)
+        } catch (err) {
+            console.error(err)
+            return ctx.app.emit('error', throwError(errorCode, '新增文章失败'), ctx)
+        }
+    }
 }
