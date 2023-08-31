@@ -1,11 +1,3 @@
-/*
- * @Author: M
- * @Date: 2023-03-01 16:23:19
- * @Description: 路由公共注册
- * @LastEditTime: 2023-03-02 17:05:41
- * @LastEditors: M
- */
-
 const fs = require('fs') // 文件模块
 const Router = require('koa-router')
 const { swaggerJson } = require('../utils/swagger')

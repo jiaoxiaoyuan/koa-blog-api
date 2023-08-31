@@ -5,9 +5,8 @@
   "main": "./src/main.js",
   "scripts": {
     "serve": "nodemon bin/www",
-    "dev": "nodemon bin/www",
+    "dev": "nodemon app.js",
     "prd": "pm2 start bin/www",
-    "build": "node app.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "dependencies": {
