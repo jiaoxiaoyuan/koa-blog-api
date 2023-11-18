@@ -11,27 +11,7 @@ const { auth, needAdminAuthNotNeedSuper } = require('../middleware/auth/index')
 
 const router = new Router({ prefix: '/article' })
 
-const {
-    createArticle,
-    updateArticle,
-    updateTop,
-    deleteArticle,
-    revertArticle,
-    toggleArticlePublic,
-    getArticleList,
-    getArticleInfoByTitle,
-    getArticleById,
-    blogHomeGetArticleList,
-    blogTimelineGetArticleList,
-    getArticleListByTagId,
-    getArticleListByCategoryId,
-    getRecommendArticleById,
-    getArticleListByContent,
-    getHotArticle,
-    articleLike,
-    cancelArticleLike,
-    addReadingDuration
-} = require('../controller/article/index')
+const { createArticle, updateArticle, updateTop, deleteArticle, revertArticle, toggleArticlePublic, getArticleList, getArticleInfoByTitle, getArticleById, blogHomeGetArticleList, blogTimelineGetArticleList, getArticleListByTagId, getArticleListByCategoryId, getRecommendArticleById, getArticleListByContent, getHotArticle, articleLike, cancelArticleLike, addReadingDuration } = require('../controller/article/index')
 
 const { verifyArticleParam, verifyTopParam, verifyDelParam, updateJudgeTitleExist, createJudgeTitleExist } = require('../middleware/article/index')
 
